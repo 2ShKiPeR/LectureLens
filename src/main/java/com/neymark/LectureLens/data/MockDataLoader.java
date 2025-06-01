@@ -20,7 +20,6 @@ public class MockDataLoader implements CommandLineRunner {
     private final SurveyRepository surveyRepository;
     private final QuestionRepository questionRepository;
     private final AnswerRepository answerRepository;
-    private final SurveyFeedbackRepository surveyFeedbackRepository;
 
     @Override
     public void run(String... args) {
@@ -141,23 +140,5 @@ public class MockDataLoader implements CommandLineRunner {
         a3s2.setCreatedAt(LocalDateTime.now());
         answerRepository.save(a3s2);
 
-        // --- 8. SURVEY FEEDBACK от студента 1 (позитив) ---
-        SurveyFeedback feedback1 = new SurveyFeedback();
-        feedback1.setSurvey(survey);
-        feedback1.setUser(student1);
-        feedback1.setTextFeedback("Лекция очень понравилась, объясняли доступно, с примерами. Жду следующую!");
-        // Нет голосового фидбека
-        feedback1.setCreatedAt(LocalDateTime.now());
-        surveyFeedbackRepository.save(feedback1);
-
-        // --- 9. SURVEY FEEDBACK от студента 2 (нейтрально-негативный, только голос) ---
-        SurveyFeedback feedback2 = new SurveyFeedback();
-        feedback2.setSurvey(survey);
-        feedback2.setUser(student2);
-        // Только голосовой фидбек, текстовое поле пустое
-        feedback2.setVoiceFeedbackUrl("https://voice.mock/feedback2.mp3");
-        feedback2.setVoiceFeedbackText("Голосом: хотелось бы больше наглядных примеров и медленнее объяснение.");
-        feedback2.setCreatedAt(LocalDateTime.now());
-        surveyFeedbackRepository.save(feedback2);
     }
 }
