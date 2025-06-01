@@ -21,7 +21,7 @@ public class Question {
     private Integer orderNumber; // 1-18
     private String text;
     private String type; // например, single-choice, rating и т.д.
-    private Integer maxPoint;
+    private Integer maxValue;
     // getters, setters
 }
 
