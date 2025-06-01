@@ -1,4 +1,4 @@
-package com.neymark.LectureLens.service;
+package com.neymark.LectureLens.services;
 
 import com.neymark.LectureLens.utils.MultipartInputStreamFileResource;
 import org.springframework.http.*;

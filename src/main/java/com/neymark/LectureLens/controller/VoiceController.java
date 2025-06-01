@@ -1,6 +1,6 @@
 package com.neymark.LectureLens.controller;
 
-import com.neymark.LectureLens.service.VoiceService;
+import com.neymark.LectureLens.services.VoiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
