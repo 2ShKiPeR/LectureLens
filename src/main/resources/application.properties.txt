@@ -2,7 +2,7 @@ spring.application.name=LectureLens
 
 openapi.api.url = https://api.openai.com/v1/chat/completions
 openapi.api.model = gpt-4o-mini
-openapi.api.key = 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
+openapi.api.key =
 
 spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
 spring.datasource.username=postgres
