@@ -33,6 +33,8 @@ public class Answer {
     private String voiceCommentUrl; // ссылка на аудио-файл (если есть)
     private String voiceCommentText; // распознанный текст из голосового комментария
 
+    private String emotion;
+
     private LocalDateTime createdAt;
 
 }
