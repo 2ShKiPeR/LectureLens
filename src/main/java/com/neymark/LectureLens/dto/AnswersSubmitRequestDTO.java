@@ -7,7 +7,7 @@ import java.util.List;
 
 
 @Data
-public class AnswersSubmitRequest {
+public class AnswersSubmitRequestDTO {
     private Long surveyId;
     private Long userId;
     private List<AnswerRequestDTO> answers; // ответы к вопросам (массив)

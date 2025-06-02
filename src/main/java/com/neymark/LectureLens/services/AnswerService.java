@@ -1,6 +1,6 @@
 package com.neymark.LectureLens.services;
 
-import com.neymark.LectureLens.dto.AnswersSubmitRequest;
+import com.neymark.LectureLens.dto.AnswersSubmitRequestDTO;
 import com.neymark.LectureLens.models.Answer;
 import com.neymark.LectureLens.models.Question;
 import com.neymark.LectureLens.models.Survey;
@@ -24,14 +24,14 @@ public class AnswerService {
     private final QuestionRepository questionRepository;
 
     @Transactional
-    public void submitAnswers(AnswersSubmitRequest request) {
+    public void submitAnswers(AnswersSubmitRequestDTO request) {
         Survey survey = surveyRepository.findById(request.getSurveyId())
                 .orElseThrow(() -> new RuntimeException("Survey not found"));
         User user = userRepository.findById(request.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (request.getAnswers() != null) {
-            for (AnswersSubmitRequest.AnswerRequestDTO dto : request.getAnswers()) {
+            for (AnswersSubmitRequestDTO.AnswerRequestDTO dto : request.getAnswers()) {
                 Question question = questionRepository.findById(dto.getQuestionId())
                         .orElseThrow(() -> new RuntimeException("Question not found"));
                 Answer answer = new Answer();

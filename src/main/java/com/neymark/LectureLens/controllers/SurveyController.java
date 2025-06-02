@@ -1,7 +1,7 @@
 package com.neymark.LectureLens.controllers;
 
 
-import com.neymark.LectureLens.dto.AnswersSubmitRequest;
+import com.neymark.LectureLens.dto.AnswersSubmitRequestDTO;
 import com.neymark.LectureLens.services.AnswerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class SurveyController {
     private final AnswerService answerService;
 
     @PostMapping("/submit")
-    public ResponseEntity<Void> submitAnswers(@RequestBody AnswersSubmitRequest request) {
+    public ResponseEntity<Void> submitAnswers(@RequestBody AnswersSubmitRequestDTO request) {
         answerService.submitAnswers(request);
         return ResponseEntity.ok().build();
     }
