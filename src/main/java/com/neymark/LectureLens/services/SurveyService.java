@@ -1,6 +1,7 @@
 package com.neymark.LectureLens.services;
 
 import com.neymark.LectureLens.dto.AnswersSubmitRequestDTO;
+import com.neymark.LectureLens.dto.KeyWordDTO;
 import com.neymark.LectureLens.models.Answer;
 import com.neymark.LectureLens.models.Question;
 import com.neymark.LectureLens.models.Survey;
@@ -14,6 +15,8 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 
 @Data
 @Service
@@ -23,6 +26,7 @@ public class SurveyService {
     private final SurveyRepository surveyRepository;
     private final UserRepository userRepository;
     private final QuestionRepository questionRepository;
+    private final KeyWordsService keyWordsService;
 
     @Transactional
     public void submitAnswers(AnswersSubmitRequestDTO request) {
@@ -40,10 +44,16 @@ public class SurveyService {
                 answer.setUser(user);
                 answer.setQuestion(question);
                 answer.setAnswerValue(dto.getAnswerValue());
-                answer.setTextComment(dto.getTextComment());
+                String text = dto.getTextComment();
+                Long subjectId = dto.getSubjectID();
+                keyWordsService.extractKeywords(text, subjectId);
+                answer.setTextComment(text);
                 answer.setVoiceCommentUrl(dto.getVoiceCommentUrl());
                 answer.setVoiceCommentText(dto.getVoiceCommentText());
                 answer.setCreatedAt(LocalDateTime.now());
+                List<KeyWordDTO> keywords = keyWordsService.extractKeywords(dto.getVoiceCommentText(), subjectId);
+                keywords.forEach(k -> System.out.println(k.getWord() + " → " + k.getFrequency()));
+
                 answerRepository.save(answer);
             }
         }

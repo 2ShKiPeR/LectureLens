@@ -19,6 +19,7 @@ public class AnswersSubmitRequestDTO {
         private String textComment;      // развернутый текст
         private String voiceCommentUrl;  // опционально
         private String voiceCommentText; // опционально
+        private Long subjectID;
     }
 }
 

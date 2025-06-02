@@ -27,11 +27,4 @@ public class VoiceController {
         String sentiment = voiceService.analyzeSentiment(text);
         return ResponseEntity.ok(sentiment);
     }
-
-    @PostMapping("/extract-keywords")
-    public ResponseEntity<Map<String, Integer>> extractKeywords(@RequestBody Map<String, String> payload) {
-        String text = payload.get("text");
-        Map<String, Integer> keywords = voiceService.extractKeywords(text);
-        return ResponseEntity.ok(keywords);
-    }
 }

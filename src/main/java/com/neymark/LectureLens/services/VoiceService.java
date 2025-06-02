@@ -57,34 +57,4 @@ public class VoiceService {
             return "[Ошибка анализа тональности]";
         }
     }
-
-    public Map<String, Integer> extractKeywords(String text) {
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            String url = "http://localhost:8001/extract-keywords";
-
-            Map<String, String> requestBody = new HashMap<>();
-            requestBody.put("text", text);
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            HttpEntity<Map<String, String>> request = new HttpEntity<>(requestBody, headers);
-
-            ResponseEntity<Map> response = restTemplate.postForEntity(url, request, Map.class);
-
-            Map<String, Object> rawMap = (Map<String, Object>) response.getBody().get("keywords");
-
-            Map<String, Integer> keywords = new HashMap<>();
-            for (Map.Entry<String, Object> entry : rawMap.entrySet()) {
-                keywords.put(entry.getKey(), ((Number) entry.getValue()).intValue());
-            }
-
-            return keywords;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Map.of("Ошибка", -1);
-        }
-    }
 }
